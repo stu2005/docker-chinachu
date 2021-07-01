@@ -1,0 +1,52 @@
+services:
+  mirakurun:
+    #build:
+      #context: ../
+      #dockerfile: docker/Dockerfile
+    image: chinachu/mirakurun:latest
+    cap_add:
+      - SYS_ADMIN
+      - SYS_NICE
+    environment:
+      TZ: Asia/Tokyo
+      # LOG_LEVEL: "3"
+      # DEBUG: "true"
+    ports:
+      - 23301:40772
+      #- 9229:9229
+    devices:
+      - /dev/bus:/dev/bus
+      #- /dev/dvb:/dev/dvb
+    volumes:
+      - /usr/local/mirakurun/run/:/var/run/
+      - /usr/local/mirakurun/opt/:/opt/
+      - /usr/local/mirakurun/config/:/app-config/
+      - /usr/local/mirakurun/data/:/app-data/
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-file: "1"
+        max-size: 10m
+  chinachu:
+    build: chinachu
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./chinachu/config/config.json:/usr/src/app/chinachu/config.json
+      - save:/usr/src/app/chinachu/
+      - /mnt/hdd/recorded:/usr/src/app/chinachu/recorded
+    environment:
+      TZ: "Asia/Tokyo"
+    depends_on:
+      - mirakurun
+    ports:
+      - "10016:20772"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-file: "1"
+        max-size: 10m
+volumes:
+  save:
+    driver: local
