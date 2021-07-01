@@ -16,7 +16,7 @@ RUN apk add --no-cache alpine-sdk curl git ffmpeg python3 -y \
 && mv /tmp/chinachu-operator /tmp/chinachu-wui /etc/init.d/ \
 && mkdir log \
 && touch log/wui log/scheduler log/operator
-&& apk del --purge alpine-sdk python3 git -y
+&& apk del --purge alpine-sdk python3 git
 WORKDIR /usr/src/app/chinachu
 CMD ["./chinachu","update","&&","/etc/init.d/chinachu-operator","start","&&","/etc/init.d/chinachu-wui","start"]
 EXPOSE 20772
