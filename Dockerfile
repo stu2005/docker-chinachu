@@ -1,6 +1,7 @@
-FROM node:10-alpine
+FROM node:10-buster-slim
 WORKDIR /usr/src/app
-RUN apk add --no-cache alpine-sdk curl git ffmpeg python3 \
+RUN apt-get update \
+&& apt-get install build-essential curl git ffmpeg python3 -y \
 && git clone git://github.com/Chinachu/Chinachu.git chinachu \
 && cd chinachu \
 && echo 2 | ./chinachu installer \
@@ -16,7 +17,8 @@ RUN apk add --no-cache alpine-sdk curl git ffmpeg python3 \
 && mv /tmp/chinachu-operator /tmp/chinachu-wui /etc/init.d/ \
 && mkdir log \
 && touch log/wui log/scheduler log/operator \
-&& apk del --purge alpine-sdk python3 git
+&& apt-get autoremove --purge build-essential python3 git -y \
+&& apt-get clean
 WORKDIR /usr/src/app/chinachu
 CMD ["./chinachu","update","&&","/etc/init.d/chinachu-operator","start","&&","/etc/init.d/chinachu-wui","start"]
 EXPOSE 20772
