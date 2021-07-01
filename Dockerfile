@@ -1,6 +1,6 @@
 FROM node:10-alpine
 WORKDIR /usr/src/app
-RUN apk add --no-cache alpine-sdk curl git ffmpeg python3 -y \
+RUN apk add --no-cache alpine-sdk curl git ffmpeg python3 \
 && git clone git://github.com/Chinachu/Chinachu.git chinachu \
 && cd chinachu \
 && echo 2 | ./chinachu installer \
