@@ -1,5 +1,5 @@
 {
-  "uid": 1000,
+  "uid": "node",
   "gid": "video",
   "mirakurunPath": "http://mirakurun:40772",
 
@@ -44,7 +44,7 @@
   "wuiMdnsAdvertisement": true,
 
   "recordedFormat": "[<date:yymmdd-HHMM>][<type><channel>][<channel-name>]<title>.m2ts",
-  "storageLowSpaceThresholdMB": 9000,
+  "storageLowSpaceThresholdMB": 3000,
   "storageLowSpaceAction": "remove",
   "storageLowSpaceNotifyTo": null,
   "storageLowSpaceCommand": ""
