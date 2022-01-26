@@ -57,7 +57,7 @@ RUN set -x \
 	&& apk del --purge .build-deps
 
 COPY chinachu/services.sh /usr/local/bin
-COPY chinachu/config.sample.json ${WORK_DIR}
+COPY chinachu/config.sample.json ${WORK_DIR}/config.json
 
 WORKDIR ${WORK_DIR}
 CMD ["/usr/local/bin/services.sh"]
