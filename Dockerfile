@@ -46,6 +46,8 @@ RUN set -x \
 	&& chmod u+x /tmp/chinachu-operator /tmp/chinachu-wui \
 	&& mv /tmp/chinachu-operator /etc/init.d/ \
 	&& mv /tmp/chinachu-wui /etc/init.d/ \
+        && echo [] >rules.json \
+        && chown ${USER_NAME}:${USER_NAME} rules.json \
         && mkdir data \
         && cd data \
         && touch recorded.json  recording.json  reserves.json  schedule.json  scheduler.pid \
@@ -56,8 +58,8 @@ RUN set -x \
 	&& npm cache verify \
 	&& apk del --purge .build-deps
 
-COPY chinachu/services.sh /usr/local/bin
-COPY chinachu/config.sample.json ${WORK_DIR}/config.json
+COPY chinachu/services.sh chinachu/setup.sh /usr/local/bin
+COPY chinachu/config.sample.json ${WORK_DIR}
 
 WORKDIR ${WORK_DIR}
 CMD ["/usr/local/bin/services.sh"]
