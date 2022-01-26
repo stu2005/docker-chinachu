@@ -39,11 +39,7 @@ services:
         max-file: "1"
         max-size: 10m
   chinachu:
-    build:
-      context: chinachu
-      args:
-        - REPOSITORY=git://github.com/Chinachu/Chinachu.git
-        - BRANCH=gamma
+    image: stu2005/chinachu:latest
     container_name: chinachu
     ports:
       - "20772:20772"
