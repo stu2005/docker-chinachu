@@ -53,6 +53,7 @@ services:
       - ./chinachu/config/rules.json:/usr/local/chinachu/rules.json
       - ./chinachu/data:/usr/local/chinachu/data
       - ./recorded:/usr/local/chinachu/recorded
+      - /opt/mirakurun/run/mirakurun.sock:/usr/local/chinachu/mirakurun.sock
     depends_on:
       - mirakurun
     restart: unless-stopped
