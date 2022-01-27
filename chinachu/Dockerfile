@@ -46,10 +46,13 @@ RUN set -x \
 	&& chmod u+x /tmp/chinachu-operator /tmp/chinachu-wui \
 	&& mv /tmp/chinachu-operator /etc/init.d/ \
 	&& mv /tmp/chinachu-wui /etc/init.d/ \
-        && mkdir data \
+        && sudo -u ${USER_NAME} mkdir data \
         && cd data \
-        && touch recorded.json  recording.json  reserves.json  schedule.json  scheduler.pid \
-        && chown ${USER_NAME}:${USER_NAME} recorded.json  recording.json  reserves.json  schedule.json  scheduler.pid \
+        && sudo -u ${USER_NAME} echo [] >recorded.json \
+        && sudo -u ${USER_NAME} echo [] >recording.json \
+        && sudo -u ${USER_NAME} echo [] >reserves.json \
+        && sudo -u ${USER_NAME} echo [] >schedule.json \
+        && sudo -u ${USER_NAME} touch scheduler.pid \
 	\
 	# cleaning
 	&& cd / \
@@ -57,7 +60,6 @@ RUN set -x \
 	&& apk del --purge .build-deps
 
 COPY services.sh /usr/local/bin
-COPY config.sample.json ${WORK_DIR}
 
 WORKDIR ${WORK_DIR}
 CMD ["/usr/local/bin/services.sh"]
