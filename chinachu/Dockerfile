@@ -48,10 +48,11 @@ RUN set -x \
 	&& mv /tmp/chinachu-wui /etc/init.d/ \
         && sudo -u ${USER_NAME} mkdir data \
         && cd data \
-        && sudo -u ${USER_NAME} echo [] >recorded.json \
-        && sudo -u ${USER_NAME} echo [] >recording.json \
-        && sudo -u ${USER_NAME} echo [] >reserves.json \
-        && sudo -u ${USER_NAME} echo [] >schedule.json \
+        && echo [] >recorded.json \
+        && echo [] >recording.json \
+        && echo [] >reserves.json \
+        && echo [] >schedule.json \
+        && sudo chown ${USER_NAME}:${USER_NAME} * \
         && sudo -u ${USER_NAME} touch scheduler.pid \
 	\
 	# cleaning
