@@ -6,7 +6,7 @@ chinachu γ (https://github.com/Chinachu/Chinachu) のDockerイメージです�
 ・ffmpeg
 # インストール
 ```
-gti clone https://github.com/stu2005/docker-chinachu.git
+git clone https://github.com/stu2005/docker-chinachu.git
 cd docker-chinachu
 docker compose pull
 sudo mkdir -p /opt/mirakurun/run /opt/mirakurun/opt /opt/mirakurun/config /opt/mirakurun/data
