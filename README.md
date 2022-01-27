@@ -2,7 +2,7 @@
 chinachu γ (https://github.com/Chinachu/Chinachu) のDockerイメージです。https://hub.docker.com/r/stu2005/chinachu
 毎日0時0分にイメージを更新します。
 # 含まれているもの
-・chinachu (./chinachu installerの2と4と5を実行しています)
+・chinachu (./chinachu installerの2と4を実行しています)
 ・ffmpeg
 # インストール
 ```
