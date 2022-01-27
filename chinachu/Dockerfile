@@ -14,6 +14,7 @@ RUN set -x \
 		curl \
 		procps \
 		ca-certificates \
+		ffmpeg \
 	\
 	&& apk add --no-cache --virtual .build-deps \
 		git \
@@ -39,7 +40,6 @@ RUN set -x \
 	&& cd ${WORK_DIR} \
 	&& echo 2 | sudo -u ${USER_NAME} ./chinachu installer \
 	&& echo 4 | sudo -u ${USER_NAME} ./chinachu installer \
-	&& echo 5 | sudo -u ${USER_NAME} ./chinachu installer \
 	&& sudo -u ${USER_NAME} ./chinachu service operator initscript | tee /tmp/chinachu-operator \
 	&& sudo -u ${USER_NAME} ./chinachu service wui initscript | tee /tmp/chinachu-wui \
 	&& sudo -u ${USER_NAME} mkdir log \

@@ -2,13 +2,12 @@
 chinachu γ (https://github.com/Chinachu/Chinachu) のDockerイメージです。https://hub.docker.com/r/stu2005/chinachu
 毎日0時0分にイメージを更新します。
 # 含まれているもの
-・chinachu (./chinachu installerの2と3と4を実行しています)
+・chinachu (./chinachu installerの2と4を実行しています)
 ・ffmpeg
 # インストール
 ```
-mkdir docker-chinachu
+gti clone https://github.com/stu2005/docker-chinachu.git
 cd docker-chinachu
-wget https://github.com/stu2005/docker-chinachu/raw/master/docker-compose.yml
 docker compose pull
 sudo mkdir -p /opt/mirakurun/run /opt/mirakurun/opt /opt/mirakurun/config /opt/mirakurun/data
 docker compose run --rm -e SETUP=true mirakurun
