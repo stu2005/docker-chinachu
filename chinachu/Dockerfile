@@ -52,7 +52,7 @@ RUN set -x \
         && echo [] >recording.json \
         && echo [] >reserves.json \
         && echo [] >schedule.json \
-        && chown ${USER_NAME}:${USER_NAME} recorded.json recording.json reserves.json schedule.json \
+        && chown ${USER_NAME}:${USER_NAME} * \
         && sudo -u ${USER_NAME} touch scheduler.pid \
 	\
 	# cleaning
