@@ -21,6 +21,8 @@ mirakurunの部分は公式のイメージをそのまま使用しているの�
 何のファイルがどこにあるかはdocker-compose.ymlをみてください。`config.json`は`chinachu/config`以下にあります。mirakurunのurlとポート番号以外はご自身の環境に合わせてください。 (https://github.com/Chinachu/Chinachu/wiki/Gamma-Configuration)
 # 操作方法
 ```
+#epg更新
+docker compose exec chinachu ./chinachu update
 #起動
 docker compose start
 #終了
