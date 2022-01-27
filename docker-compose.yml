@@ -7,13 +7,13 @@ services:
       - SYS_NICE
     environment:
       TZ: Asia/Tokyo
-      DOCKER_NETWORK: host
+ #     DOCKER_NETWORK: host
       # LOG_LEVEL: "3"
       # DEBUG: "true"
-    network_mode: host
+#    network_mode: host
     devices:
       - /dev/bus:/dev/bus
-      - /dev/dvb:/dev/dvb
+#      - /dev/dvb:/dev/dvb
     volumes:
       # ** CAUTION **
       # (default) `/usr/local/mirakurun/*` has been moved to `/opt/mirakurun/*`
@@ -39,6 +39,8 @@ services:
       options:
         max-file: "1"
         max-size: 10m
+    ports:
+      - "40772:40772"
   chinachu:
     image: stu2005/chinachu:latest
     container_name: chinachu
@@ -48,7 +50,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./chinachu/config/config.json:/usr/local/chinachu/config.json
       - ./chinachu/config/rules.json:/usr/local/chinachu/rules.json
-      - chinachu_data:/usr/local/chinachu/data
+      - ./chinachu/data/:/usr/local/chinachu/data/
       - ./recorded:/usr/local/chinachu/recorded
       - /opt/mirakurun/run/mirakurun.sock:/usr/local/chinachu/mirakurun.sock
     depends_on:

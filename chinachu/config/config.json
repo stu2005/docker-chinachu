@@ -1,7 +1,7 @@
 {
   "uid": "node",
   "gid": "video",
-  "mirakurunPath": "http+unix://%2Fusr%2Flocal%2Fchinachu%2Fmirakurun.sock/",
+  "mirakurunPath": "http://mirakurun:40772",
 
   "recordedDir" : "./recorded/",
 
