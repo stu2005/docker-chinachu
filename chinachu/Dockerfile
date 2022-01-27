@@ -47,13 +47,6 @@ RUN set -x \
 	&& mv /tmp/chinachu-operator /etc/init.d/ \
 	&& mv /tmp/chinachu-wui /etc/init.d/ \
         && sudo -u ${USER_NAME} mkdir data \
-        && cd data \
-        && echo [] >recorded.json \
-        && echo [] >recording.json \
-        && echo [] >reserves.json \
-        && echo [] >schedule.json \
-        && sudo chown ${USER_NAME}:${USER_NAME} * \
-        && sudo -u ${USER_NAME} touch scheduler.pid \
 	\
 	# cleaning
 	&& cd / \
