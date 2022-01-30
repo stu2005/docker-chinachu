@@ -1,3 +1,4 @@
+FROM node:14-alpine AS chinachu-build
 ARG REPOSITORY="git://github.com/Chinachu/Chinachu.git"
 ARG BRANCH="master"
 
@@ -5,8 +6,6 @@ ARG WORK_DIR="/usr/local/chinachu"
 
 #node container default value
 ARG USER_NAME="node"
-FROM node:14-alpine AS chinachu-build
-
 RUN set -x \
 	&& apk add --no-cache\
 		bash \
@@ -56,6 +55,6 @@ RUN apk add --no-cache bash \
 		curl \
 		procps \
 		ca-certificates
-WORKDIR ${WORK_DIR}
+WORKDIR /usr/local/chinachu
 CMD ["/usr/local/bin/services.sh"]
 EXPOSE 20772
