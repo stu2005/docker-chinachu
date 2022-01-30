@@ -1,4 +1,3 @@
-FROM node:14-alpine
 ARG REPOSITORY="git://github.com/Chinachu/Chinachu.git"
 ARG BRANCH="master"
 
@@ -6,6 +5,7 @@ ARG WORK_DIR="/usr/local/chinachu"
 
 #node container default value
 ARG USER_NAME="node"
+FROM node:14-alpine AS chinachu-build
 
 RUN set -x \
 	&& apk add --no-cache\
@@ -14,7 +14,6 @@ RUN set -x \
 		curl \
 		procps \
 		ca-certificates \
-		ffmpeg \
 	\
 	&& apk add --no-cache --virtual .build-deps \
 		git \
@@ -46,15 +45,17 @@ RUN set -x \
 	&& chmod u+x /tmp/chinachu-operator /tmp/chinachu-wui \
 	&& mv /tmp/chinachu-operator /etc/init.d/ \
 	&& mv /tmp/chinachu-wui /etc/init.d/ \
-        && sudo -u ${USER_NAME} mkdir data \
-	\
-	# cleaning
-	&& cd / \
-	&& npm cache verify \
-	&& apk del --purge .build-deps
-
+        && sudo -u ${USER_NAME} mkdir data
+FROM node:14-alpine
 COPY services.sh /usr/local/bin
-
+COPY --from=chinachu-build /usr/local/chinachu /usr/local/chinachu
+COPY --from=chinachu-build /etc/init.d/chinachu-operator /etc/init.d/chinachu-operator
+COPY --from=chinachu-build /etc/init.d/chinachu-wui /etc/init.d/chinachu-wui
+RUN apk add --no-cache bash \
+		coreutils \
+		curl \
+		procps \
+		ca-certificates
 WORKDIR ${WORK_DIR}
 CMD ["/usr/local/bin/services.sh"]
 EXPOSE 20772
