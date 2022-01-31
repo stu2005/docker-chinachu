@@ -8,15 +8,11 @@ ARG WORK_DIR="/app"
 ARG USER_NAME="node"
 RUN set -x \
 	&& apk add --no-cache \
-                ffmpeg \
-		bash \
+                bash \
 		coreutils \
-		curl \
 		procps \
 		ca-certificates \
-	\
-	&& apk add --no-cache --virtual .build-deps \
-                alpine-sdk \
+	        alpine-sdk \
 		git \
 		make \
 		gcc \
@@ -36,7 +32,7 @@ RUN set -x \
 	\
 	&& mkdir -p ${WORK_DIR} \
 	&& git clone ${REPOSITORY} ${WORK_DIR} \
-	&& chown -R ${USER_NAME} ${WORK_DIR} \
+	&& chown -R ${USER_NAME}:${USER_NAME} ${WORK_DIR} \
 	&& cd ${WORK_DIR} \
 	&& echo 2 | sudo -u ${USER_NAME} ./chinachu installer \
 	&& echo 4 | sudo -u ${USER_NAME} ./chinachu installer \
