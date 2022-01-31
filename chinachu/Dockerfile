@@ -62,8 +62,10 @@ RUN apk add --no-cache \
                 coreutils \
                 curl \
                 procps \
-                ca-certificates
-
+                ca-certificates && \
+    sudo -u node mkdir /app/data && \
+    cd /app/data && \
+    sudo -u node echo [] >recording.json 
 WORKDIR /app
 CMD ["/usr/local/bin/services.sh"]
 EXPOSE 20772
