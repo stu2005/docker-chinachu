@@ -63,7 +63,8 @@ RUN apk add --no-cache \
     chown -R node:node /app && \
     sudo -u node mkdir /app/data && \
     cd /app/data && \
-    sudo -u node echo [] >recording.json 
+    sudo -u node echo [] >recording.json && \
+    chown node:node ./recording.json
 WORKDIR /app
 CMD ["/usr/local/bin/services.sh"]
 EXPOSE 20772
