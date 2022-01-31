@@ -32,7 +32,7 @@ RUN set -x \
 	\
 	&& mkdir -p ${WORK_DIR} \
 	&& git clone ${REPOSITORY} ${WORK_DIR} \
-	&& chown -R ${USER_NAME}:${USER_NAME} ${WORK_DIR} \
+	&& chown -R ${USER_NAME} ${WORK_DIR} \
 	&& cd ${WORK_DIR} \
 	&& echo 2 | sudo -u ${USER_NAME} ./chinachu installer \
 	&& echo 4 | sudo -u ${USER_NAME} ./chinachu installer \
@@ -60,6 +60,7 @@ RUN apk add --no-cache \
                 curl \
                 procps \
                 ca-certificates && \
+    chown -R node:node /app && \
     sudo -u node mkdir /app/data && \
     cd /app/data && \
     sudo -u node echo [] >recording.json 
