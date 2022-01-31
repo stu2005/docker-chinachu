@@ -57,6 +57,7 @@ COPY services.sh /usr/local/bin
 COPY config.sample.json ${WORK_DIR}
 
 RUN apk add --no-cache \
+                sudo \
                 ffmpeg \
                 bash \
                 coreutils \
