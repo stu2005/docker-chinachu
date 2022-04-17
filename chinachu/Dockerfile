@@ -1,7 +1,7 @@
 FROM node:14-alpine AS build
 
 ENV DOCKER="YES"
-ARG REPOSITORY="git://github.com/Chinachu/Chinachu.git"
+ARG REPOSITORY="https://github.com/Chinachu/Chinachu.git"
 ARG WORK_DIR="/app"
 
 #node container default value
